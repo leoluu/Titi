@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Auto-render test</title>
+    <script src="../../bower_components/katex/dist/katex.min.js" type="text/javascript"></script>
+    <link href="../katex.min.css" rel="stylesheet" type="text/css">
+      <script src="./splitAtDelimiters.js" type="text/javascript"></script>
+    <script src="./auto-render.js" type="text/javascript"></script>
+    <style type="text/css">
+      body {
+          margin: 0px;
+          padding: 0px;
+          font-size: 36px;
+      }
+
+      #test > .blue {
+          color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="test">
+      This is some text $math \frac12$ other text $\unsupported$
+      <span class="blue">
+		  		  When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
+              $x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$
+          $\displaystyle= \left(\sum_{i=1}^{k}i\right) +(k+1)$
+          <span>$c = \pm\sqrt{a^2 + b^2}$</span>
+          <span>$\displaystyle\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$</span>
+          <span>$$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$</span>
+        Other node \[ displaymath \frac{1}{2} \] blah $$ \int_2^3 $$
+      </span>
+      and some <!-- comment --> more text \(and math\) blah. And $math with a
+      \$ sign$.
+      <pre>
+        Stuff in a $pre tag$
+		  When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
+              $x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$
+
+      </pre>
+    </div>
+    <script>
+      renderMathInElement(
+          document.getElementById("test"),
+          {
+              delimiters: [
+                  {left: "$$", right: "$$", display: true},
+                  {left: "\\[", right: "\\]", display: true},
+                  {left: "$", right: "$", display: false},
+                  {left: "\\(", right: "\\)", display: false}
+              ]
+          }
+      );
+    </script>
+  </body>
+</html>
